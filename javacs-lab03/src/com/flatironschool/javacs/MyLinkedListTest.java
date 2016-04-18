@@ -25,7 +25,6 @@ public class MyLinkedListTest {
 	private List<Integer> mll;
 	private List<Integer> list;
 
-
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -35,13 +34,14 @@ public class MyLinkedListTest {
 		list.add(1);
 		list.add(2);
 		list.add(3);
-		
+
 		mll = new MyLinkedList<Integer>();
 		mll.addAll(list);
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#MyArrayList()}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#MyArrayList()}.
 	 */
 	@Test
 	public void testMyArrayList() {
@@ -49,55 +49,58 @@ public class MyLinkedListTest {
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#add(java.lang.Object)}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#add(java.lang.Object)}.
 	 */
 	@Test
 	public void testAddT() {
 		for (int i = 4; i < 20; i++) {
 			mll.add(i);
 		}
-		//System.out.println(Arrays.toString(mal.toArray()));
+		// System.out.println(Arrays.toString(mal.toArray()));
 		assertThat(mll.get(18), is(new Integer(19)));
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#add(int, java.lang.Object)}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#add(int, java.lang.Object)}.
 	 */
 	@Test
 	public void testAddIntT() {
 		mll.add(1, 5);
-		//System.out.println(Arrays.toString(mal.toArray()));
+		// System.out.println(Arrays.toString(mal.toArray()));
 		assertThat(mll.get(1), is(new Integer(5)));
 		assertThat(mll.size(), is(4));
-		
+
 		try {
-		    mll.set(-1, 0);
-		    fail();
-		} catch (IndexOutOfBoundsException e) {} // good
+			mll.set(-1, 0);
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+		} // good
 
 		try {
 			mll.set(4, 0);
 			fail();
-			} catch (IndexOutOfBoundsException e) {} // good
-	
-		mll.add(0, 6);
-		
-	  //System.out.println(Arrays.toString(mal.toArray()));
-    assertThat(mll.get(0), is(6));
+		} catch (IndexOutOfBoundsException e) {
+		} // good
 
-    System.out.println(Arrays.toString(mll.toArray()) + " size = " + mll.size());
+		mll.add(0, 6);
+
+		// System.out.println(Arrays.toString(mal.toArray()));
+		assertThat(mll.get(0), is(6));
+
+		
 		mll.add(5, 7);
-		
-		System.out.println(Arrays.toString(mll.toArray()) + " size = " + mll.size());
-		//System.out.println(Arrays.toString(mal.toArray()));
-		
+		// System.out.println(Arrays.toString(mal.toArray()));
+
 		assertThat(mll.get(5), is(new Integer(7)));
-		
-		
+
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#addAll(java.util.Collection)}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#addAll(java.util.Collection)}
+	 * .
 	 */
 	@Test
 	public void testAddAllCollectionOfQextendsT() {
@@ -118,7 +121,8 @@ public class MyLinkedListTest {
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#contains(java.lang.Object)}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#contains(java.lang.Object)}.
 	 */
 	@Test
 	public void testContains() {
@@ -130,7 +134,9 @@ public class MyLinkedListTest {
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#containsAll(java.util.Collection)}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#containsAll(java.util.Collection)}
+	 * .
 	 */
 	@Test
 	public void testContainsAll() {
@@ -148,24 +154,30 @@ public class MyLinkedListTest {
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#indexOf(java.lang.Object)}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#indexOf(java.lang.Object)}.
 	 */
 	@Test
 	public void testIndexOf() {
+		
 		assertThat(mll.indexOf(1), is(0));
+	
 		assertThat(mll.indexOf(2), is(1));
+		
 		assertThat(mll.indexOf(3), is(2));
+		
 		assertThat(mll.indexOf(4), is(-1));
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#indexOf(java.lang.Object)}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#indexOf(java.lang.Object)}.
 	 */
 	@Test
 	public void testIndexOfNull() {
 		assertThat(mll.indexOf(null), is(-1));
 		mll.add(null);
-		assertThat(mll.indexOf(null), is(3));		
+		assertThat(mll.indexOf(null), is(3));
 	}
 
 	/**
@@ -191,7 +203,9 @@ public class MyLinkedListTest {
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#lastIndexOf(java.lang.Object)}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#lastIndexOf(java.lang.Object)}
+	 * .
 	 */
 	@Test
 	public void testLastIndexOf() {
@@ -200,7 +214,8 @@ public class MyLinkedListTest {
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#remove(java.lang.Object)}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#remove(java.lang.Object)}.
 	 */
 	@Test
 	public void testRemoveObject() {
@@ -209,40 +224,45 @@ public class MyLinkedListTest {
 		assertThat(flag, equalTo(true));
 		assertThat(mll.size(), is(2));
 		assertThat(mll.get(1), is(new Integer(3)));
-		//System.out.println(Arrays.toString(mal.toArray()));
-		
+		// System.out.println(Arrays.toString(mal.toArray()));
 
 		flag = mll.remove(new Integer(1));
 		assertThat(flag, equalTo(true));
 		assertThat(mll.size(), is(1));
 		assertThat(mll.get(0), is(new Integer(3)));
-		//System.out.println(Arrays.toString(mal.toArray()));
-		
+		// System.out.println(Arrays.toString(mal.toArray()));
+
 		flag = mll.remove(new Integer(5));
 		assertThat(flag, equalTo(false));
 		assertThat(mll.size(), is(1));
 		assertThat(mll.get(0), is(new Integer(3)));
-		//System.out.println(Arrays.toString(mal.toArray()));
-		
+		// System.out.println(Arrays.toString(mal.toArray()));
+
 		flag = mll.remove(new Integer(3));
 		assertThat(flag, equalTo(true));
 		assertThat(mll.size(), is(0));
-		//System.out.println(Arrays.toString(mal.toArray()));
+		// System.out.println(Arrays.toString(mal.toArray()));
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#remove(int)}.
+	 * Test method for {@link com.flatironschool.javacs.MyArrayList#remove(int)}
+	 * .
 	 */
 	@Test
 	public void testRemoveInt() {
+		System.out.println(Arrays.toString(mll.toArray()) + " size = " + mll.size());
 		Integer val = mll.remove(1);
+		System.out.println(Arrays.toString(mll.toArray()) + " size = " + mll.size());
 		assertThat(val, is(new Integer(2)));
+		
 		assertThat(mll.size(), is(2));
 		assertThat(mll.get(1), is(new Integer(3)));
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#removeAll(java.util.Collection)}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#removeAll(java.util.Collection)}
+	 * .
 	 */
 	@Test
 	public void testRemoveAll() {
@@ -251,7 +271,8 @@ public class MyLinkedListTest {
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#set(int, java.lang.Object)}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#set(int, java.lang.Object)}.
 	 */
 	@Test
 	public void testSet() {
@@ -269,18 +290,20 @@ public class MyLinkedListTest {
 		assertThat(mll.get(0), is(new Integer(6)));
 		assertThat(mll.get(1), is(new Integer(5)));
 		assertThat(mll.get(2), is(new Integer(7)));
-		//System.out.println(Arrays.toString(mal.toArray()));
+		// System.out.println(Arrays.toString(mal.toArray()));
 
 		try {
-		    mll.set(-1, 0);
-		    fail();
-		} catch (IndexOutOfBoundsException e) {} // good
+			mll.set(-1, 0);
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+		} // good
 
 		try {
-		    mll.set(4, 0);
-		    fail();
-		} catch (IndexOutOfBoundsException e) {} // good
-}
+			mll.set(4, 0);
+			fail();
+		} catch (IndexOutOfBoundsException e) {
+		} // good
+	}
 
 	/**
 	 * Test method for {@link com.flatironschool.javacs.MyArrayList#size()}.
@@ -291,7 +314,8 @@ public class MyLinkedListTest {
 	}
 
 	/**
-	 * Test method for {@link com.flatironschool.javacs.MyArrayList#subList(int, int)}.
+	 * Test method for
+	 * {@link com.flatironschool.javacs.MyArrayList#subList(int, int)}.
 	 */
 	@Test
 	public void testSubList() {
@@ -306,7 +330,7 @@ public class MyLinkedListTest {
 	@Test
 	public void testToArray() {
 		Object[] array = mll.toArray();
-		assertThat((Integer)array[0], is(new Integer(1)));
+		assertThat((Integer) array[0], is(new Integer(1)));
 	}
 
 }

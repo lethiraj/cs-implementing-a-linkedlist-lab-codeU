@@ -85,44 +85,29 @@ public class MyLinkedList<E> implements List<E> {
 
 	@Override
 	public void add(int index, E element) {
-		// TODO: fill this in
-		if (index < 0 || index > size) {
-			throw new IndexOutOfBoundsException();
+		//TODO:Fill it up 
+		if(index < 0 || index > size) throw new IndexOutOfBoundsException();
+		if(index == 0){
+			if(this.head == null){
+				this.head = new Node(element);
+				this.size++;
+			} else {
+				Node newNode = new Node(element);
+				newNode.next = this.head;
+				this.head = newNode;
+				this.size++;
+			}
+		} else {
+			Node newNode = new Node(element);
+			Node currentNode = this.head;
+			for(int i = 0; i < index - 1; i++){
+				currentNode = currentNode.next;
+			}
+			newNode.next=currentNode.next;
+			currentNode.next=newNode;
+			this.size++;
 		}
-//		if(index==0){
-//			Node newhead=new Node(element);
-//			newhead.next=head.next.next;
-//			head=newhead;
-//			for(int i =0;i<size;i=i+1){
-//				head=head.next;
-//			}
-//			size++;
-//		}
-	if(index==0){
-		if(head.equals(null)){
-			head=new Node(element);
-			size++;
-		}
-		else{
-			Node Temp=new Node(element);
-			Temp.next=head;
-			head=Temp;
-			size++;
-		}
-	}
-	else if(index==size){
-		add(element);
-	}
-	else {
-       for (int i = 0; i < index; i++){
-			head = head.next;
-		}
-		Node newnode=new Node(element);
-		head.next=newnode;
-		newnode.next=head.next.next;
-		size++;
-	}	
-	
+
 
 	}
 
@@ -184,33 +169,19 @@ public class MyLinkedList<E> implements List<E> {
 
 	@Override
 	public int indexOf(Object target) {
-//		// TODO: fill this in
-//		int index=-1;
-//		for(int i=0;!(head.equals(target))&& head!=null;i=i+1){
-//			head=head.next;
-//			index=i;
-//			if(i==size){
-//				return -1;
-//			}
-//			}
-//		return index;
+		//TODO:fill it up
+		Node iterator = this.head;
 		int index = 0;
-		if (target == null)
-			for (Node current = head.next; current != null; 
-					current = current.next, index++)
-			{
-				if (current.cargo == null)
-					return index;
+		while(iterator != null){
+			if(iterator.cargo == target || iterator.cargo.equals(target)){
+				return index;
 			}
-		else
-			for (Node current = head.next; current != null; 
-					current = current.next, index++)
-				if (target.equals(current.cargo))
-					return index;
-
+			iterator = iterator.next;
+			++index;
+		}
 		return -1;
 	}
-	
+
 
 	/** Checks whether an element of the array is the target.
 	 * 
@@ -219,6 +190,7 @@ public class MyLinkedList<E> implements List<E> {
 	 * @param target
 	 * @param object
 	 */
+	
 	private boolean equals(Object target, Object element) {
 		if (target == null) {
 			return element == null;
@@ -264,57 +236,38 @@ public class MyLinkedList<E> implements List<E> {
 	@Override
 	public boolean remove(Object obj) {
 		// TODO: fill this in
-//		if(head.next==null){
-//			return false;
-//		}
-//		if(head.equals(obj)){
-//			head=head.next;
-//			size--;
-//			return true;
-//			
-//		}
-//		while(!head.next.equals(obj) ){
-//			head=head.next;
-//		}
-//		head.next=head.next.next;
-//		size--;
-//		return true;
-//		}
-		Node current = head;
-
-	      // at the end of the loop current will either be positioned before
-	      // the node to be removed or on the last node of the list
-	      if (obj == null)
-		while (current.next != null && current.next.cargo != null)
-		  current = current.next;
-	      else
-		while (current.next != null && !obj.equals(current.next.cargo))
-		  current = current.next;
-
-	      if (current.next == null)
+		
+		int index=indexOf(obj);
+		if(index!=-1){
+			remove(index);
+	   return true;
+	   
+	
+		}
 		return false;
-
-	      // remove node
-	      current.next = current.next.next;
-	      size --;
-	      return true;
 	}
 
 	@Override
 	public E remove(int index) {
-		// TODO: fill this in
-		E temp=null;
-		if(size==1 && index<=size){
-			head=null;
-			size=0;
-		}else{
-		for(int i=0;i<index-1;i++){
-			head=head.next;
-			temp=head.cargo;
-			head.next=head.next.next;
+		if(index < 0 || index > size) {
+			throw new IllegalArgumentException();
 		}
+		if(index == 0){
+			E data = this.head.cargo;
+			this.head = this.head.next;
+			this.size--;
+			return data;
+		} else {
+			int i = 0;
+			Node iterator = this.head;
+			while(i < index - 1){
+				iterator = iterator.next;
+			}
+			E data = iterator.next.cargo;
+			iterator.next = iterator.next.next;
+			this.size--;
+			return data;
 		}
-		return temp;
 	}
 
 	@Override
