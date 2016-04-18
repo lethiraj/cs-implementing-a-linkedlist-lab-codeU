@@ -15,7 +15,7 @@ import java.util.ListIterator;
  *
  */
 public class MyLinkedList<E> implements List<E> {
-	
+
 	/**
 	 * Node is identical to ListNode from the example, but parameterized with T
 	 * 
@@ -25,7 +25,7 @@ public class MyLinkedList<E> implements List<E> {
 	private class Node {
 		public E cargo;
 		public Node next;
-		
+
 		public Node() {
 			this.cargo = null;
 			this.next = null;
@@ -42,10 +42,10 @@ public class MyLinkedList<E> implements List<E> {
 			return "Node(" + cargo.toString() + ")";
 		}
 	}
-	
+
 	private int size;            // keeps track of the number of elements
 	private Node head;           // reference to the first node
-	
+
 	/**
 	 * 
 	 */
@@ -64,7 +64,7 @@ public class MyLinkedList<E> implements List<E> {
 		mll.add(2);
 		mll.add(3);
 		System.out.println(Arrays.toString(mll.toArray()) + " size = " + mll.size());
-		
+
 		mll.remove(new Integer(2));
 		System.out.println(Arrays.toString(mll.toArray()) + " size = " + mll.size());
 	}
@@ -86,6 +86,44 @@ public class MyLinkedList<E> implements List<E> {
 	@Override
 	public void add(int index, E element) {
 		// TODO: fill this in
+		if (index < 0 || index > size) {
+			throw new IndexOutOfBoundsException();
+		}
+//		if(index==0){
+//			Node newhead=new Node(element);
+//			newhead.next=head.next.next;
+//			head=newhead;
+//			for(int i =0;i<size;i=i+1){
+//				head=head.next;
+//			}
+//			size++;
+//		}
+	if(index==0){
+		if(head.equals(null)){
+			head=new Node(element);
+			size++;
+		}
+		else{
+			Node Temp=new Node(element);
+			Temp.next=head;
+			head=Temp;
+			size++;
+		}
+	}
+	else if(index==size){
+		add(element);
+	}
+	else {
+       for (int i = 0; i < index; i++){
+			head = head.next;
+		}
+		Node newnode=new Node(element);
+		head.next=newnode;
+		newnode.next=head.next.next;
+		size++;
+	}	
+	
+
 	}
 
 	@Override
@@ -146,9 +184,33 @@ public class MyLinkedList<E> implements List<E> {
 
 	@Override
 	public int indexOf(Object target) {
-		// TODO: fill this in
+//		// TODO: fill this in
+//		int index=-1;
+//		for(int i=0;!(head.equals(target))&& head!=null;i=i+1){
+//			head=head.next;
+//			index=i;
+//			if(i==size){
+//				return -1;
+//			}
+//			}
+//		return index;
+		int index = 0;
+		if (target == null)
+			for (Node current = head.next; current != null; 
+					current = current.next, index++)
+			{
+				if (current.cargo == null)
+					return index;
+			}
+		else
+			for (Node current = head.next; current != null; 
+					current = current.next, index++)
+				if (target.equals(current.cargo))
+					return index;
+
 		return -1;
 	}
+	
 
 	/** Checks whether an element of the array is the target.
 	 * 
@@ -202,13 +264,57 @@ public class MyLinkedList<E> implements List<E> {
 	@Override
 	public boolean remove(Object obj) {
 		// TODO: fill this in
+//		if(head.next==null){
+//			return false;
+//		}
+//		if(head.equals(obj)){
+//			head=head.next;
+//			size--;
+//			return true;
+//			
+//		}
+//		while(!head.next.equals(obj) ){
+//			head=head.next;
+//		}
+//		head.next=head.next.next;
+//		size--;
+//		return true;
+//		}
+		Node current = head;
+
+	      // at the end of the loop current will either be positioned before
+	      // the node to be removed or on the last node of the list
+	      if (obj == null)
+		while (current.next != null && current.next.cargo != null)
+		  current = current.next;
+	      else
+		while (current.next != null && !obj.equals(current.next.cargo))
+		  current = current.next;
+
+	      if (current.next == null)
 		return false;
+
+	      // remove node
+	      current.next = current.next.next;
+	      size --;
+	      return true;
 	}
 
 	@Override
 	public E remove(int index) {
 		// TODO: fill this in
-		return null;
+		E temp=null;
+		if(size==1 && index<=size){
+			head=null;
+			size=0;
+		}else{
+		for(int i=0;i<index-1;i++){
+			head=head.next;
+			temp=head.cargo;
+			head.next=head.next.next;
+		}
+		}
+		return temp;
 	}
 
 	@Override
